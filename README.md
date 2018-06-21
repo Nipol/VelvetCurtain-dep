@@ -5,6 +5,5 @@ Electron으로 작동하는 Decentralized Application(이하 DApp) 으로, 용�
 ## TODO
  - [ ] go-ipfs integration
  - [ ] Multi Platform Electron build
- - [ ] js-ipfs-api integration
-  - [ ] renderer?
+ - [v] js-ipfs-api integration
  - [ ] maybe... muon?

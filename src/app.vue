@@ -1,7 +1,6 @@
 <template>
   <div>
     <Navbar></Navbar>
-    <!-- <Navbar></Navbar> -->
     <router-view></router-view>
   </div>
 </template>
@@ -27,11 +26,5 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-div {
-  z-index: 1;
-  
-  div#index {
-    padding-top: 70px;
-  }
-}
+
 </style>

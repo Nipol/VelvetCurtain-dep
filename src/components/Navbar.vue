@@ -4,13 +4,15 @@
       Velvet Curtain
     </div>
     <ul>
-      <li>
+      <!-- <li>
         <router-link tag="a" :to="{ 'name': 'index' }">
           Index
         </router-link>
+      </li> -->
+      <li>
+        Your Id : {{ Id.id }}
       </li>
     </ul>
-    {{ Id.id }}
   </nav>
 </template>
 
@@ -31,6 +33,7 @@ export default class Navbar extends Vue {
 
 <style lang="scss" scoped>
 nav {
+  background: #f8f9fc;
   z-index: 999;
   position: sticky;
   display: flex;
@@ -48,6 +51,7 @@ nav {
     justify-content: center;
     font-weight: 900;
     font-size: 1.5rem;
+    color: #c00000;
   }
 
   ul {
@@ -55,9 +59,10 @@ nav {
     flex-direction: row;
     margin: 0;
     padding: 0;
+    justify-content: flex-start;
 
     li {
-      width: 100px;
+      width: 100%;
       flex: 1;
       display: flex;
       align-items: center;

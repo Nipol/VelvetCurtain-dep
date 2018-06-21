@@ -1,0 +1,38 @@
+{
+	"name": "velevtcurtain",
+	"version": "1.0.0",
+	"description": "",
+	"main": "main.js",
+	"scripts": {
+		"dev": "npm run clean && parcel serve src/index.html -d dist --public-url /dist/",
+		"build": "cross-env NODE_ENV=production parcel build src/index.html -d build --public-url .",
+		"clean": "rimraf .cache/ && rimraf dist/ && rimraf build/",
+		"test:unit": "jest --no-cache",
+		"test:coverage": "jest --no-cache --coverage",
+		"electron": "npm run build && electron ."
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"ipfsd-ctl": "^0.37.4",
+		"normalize.css": "^8.0.0",
+		"typescript": "^2.9.2",
+		"vue": "^2.5.16",
+		"vue-hot-reload-api": "^2.3.0",
+		"vue-property-decorator": "^6.1.0",
+		"vue-router": "^3.0.1",
+		"vuex": "^3.0.1",
+		"vuex-class": "^0.3.1"
+	},
+	"devDependencies": {
+		"@vue/component-compiler-utils": "^2.0.0",
+		"cross-env": "^5.2.0",
+		"electron": "^2.0.2",
+		"electron-packager": "^12.1.0",
+		"node-sass": "^4.9.0",
+		"parcel-bundler": "^1.9.2",
+		"rimraf": "^2.6.2",
+		"vue-template-compiler": "^2.5.16"
+	}
+}

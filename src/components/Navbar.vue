@@ -1,16 +1,32 @@
 <template>
   <nav>
-    <div class="brand">
-      Velvet Curtain
-    </div>
     <ul>
-      <!-- <li>
-        <router-link tag="a" :to="{ 'name': 'index' }">
-          Index
-        </router-link>
-      </li> -->
-      <li>
-        Your Id : {{ Id.id }}
+      <li id="systembutton">
+      </li>
+      <li id="searchbox">
+        <input type="text" placeholder="Media Id" @keydown.enter="hello()">
+        <button @click="hello()">
+          <font-awesome-icon icon="thumbtack" />
+        </button>
+      </li>
+      <li id="profilebox">
+        <ul>
+          <li>
+            <router-link tag="a" :to="{ 'name': 'album' }">
+              <font-awesome-icon icon="image" />
+            </router-link>
+          </li>
+          <li>
+            <router-link tag="a" :to="{ 'name': 'upload' }">
+              <font-awesome-icon icon="file-upload" />
+            </router-link>
+          </li>
+          <li>
+            <router-link tag="a" :to="{ 'name': 'setting' }">
+              <font-awesome-icon icon="sliders-h" />
+            </router-link>
+          </li>
+        </ul>
       </li>
     </ul>
   </nav>
@@ -18,15 +34,17 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { Getter, Action } from 'vuex-class';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-@Component
+@Component({
+  components: {
+    'font-awesome-icon': FontAwesomeIcon
+  }
+})
 export default class Navbar extends Vue {
-  @Getter('getId', { namespace: 'ipfs' }) Id: object;
-  @Action('IPFSInject', { namespace: 'ipfs' }) IPFSInject: any;
 
-  created() {
-    this.IPFSInject();
+  hello() {
+    alert('Hello world!');
   }
 }
 </script>
@@ -35,42 +53,119 @@ export default class Navbar extends Vue {
 nav {
   background: #f8f9fc;
   z-index: 999;
-  position: sticky;
-  display: flex;
-  flex-direction: row;
-  height: 65px;
+  position: fixed;
+  top: 0;
+  height: 38px;
   width: 100%;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   margin-bottom: 10px;
-
-  div.brand {
-    display: flex;
-    width: 200px;
-    align-items: center;
-    justify-content: center;
-    font-weight: 900;
-    font-size: 1.5rem;
-    color: #c00000;
-  }
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
 
   ul {
     display: flex;
-    flex-direction: row;
-    margin: 0;
     padding: 0;
-    justify-content: flex-start;
+    margin: 0;
+    height: 38px;
 
     li {
+      flex: 0 0 auto;
       width: 100%;
-      flex: 1;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
 
+      &#systembutton {
+        width: 75px;
+        content: ' ';
+        border-right: 1px solid lightgray;
+      }
+
+      &#searchbox {
+        width: calc(100vw - 265px);
+        height: 38px;
+        content: ' ';
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        input[type="text"] {
+          width: 100%;
+          height: 26px;
+          margin: auto;
+          font-size: 0.8rem;
+          border-radius: 0.25rem;
+          background-color: white;
+          border: 1px solid #ced4da;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          -webkit-app-region: drag;
+        }
+
+        button {
+          font-weight: 400;
+          font-size: 1rem;
+          line-height: 1.5;
+          text-align: center;
+          vertical-align: middle;
+          color: #6c757d;
+          background-color: transparent;
+          background-image: none;
+          border: 1px solid #ced4da;
+          height: 30px;
+          border-radius: 0.25rem;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          -webkit-app-region: drag;
+        }
+      }
+
+      &#profilebox {
+        width: 180px;
+        height: 40px;
+        content: ' ';
+        border-left: 1px solid lightgray;
+
+        ul {
+          display: flex;
+          list-style: none;
+          justify-content: space-between;
+
+          li {
+            align-items: center;
+            justify-content: center;
+            width: 58px;
+          }
+        }
+      }
+
       a {
+        font-weight: 400;
         text-decoration: none;
-        text-decoration-color: #0f0f0f;
+        font-size: 1.3rem;
+
+        &:link {
+          color: #de3c3c;
+        }
+
+        &:visited {
+          color: #de3c3c;
+        }
+
+        &:focus {
+          color: #de3c3c;
+        }
+
+        &:hover {
+          color: #de3c3c;
+        }
+
+        &:active {
+          color: #de3c3c;
+        }
       }
     }
     

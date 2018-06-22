@@ -3,6 +3,8 @@ import App from './app.vue';
 import router from './router';
 import store from './store';
 
+import './utils/fontawesome.ts';
+
 import './assets/style.scss';
 import 'normalize.css/normalize.css';
 

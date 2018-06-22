@@ -16,10 +16,10 @@ export const Instance = new Promise<any>((resolve, reject) => {
 	}
 });
 
-export const Id = new Promise<Object>((resolve, reject) => {
+export const Id = new Promise<object>((resolve, reject) => {
 	try {
 		if (window.ipfs !== undefined) {
-			window.ipfs.id((err: any, payload: Object) => {
+			window.ipfs.id((err: any, payload: object) => {
 				if (err) {
 					throw err;
 				}

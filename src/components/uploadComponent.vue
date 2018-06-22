@@ -1,0 +1,82 @@
+<template>
+  <div>
+    <h1>Upload Component</h1>
+    <img v-bind:src="imghash">
+    <input type="file" accept="image/*" @change="handleFileUpload($event.target.files)"/>
+    <input type="submit" @mousedown="submit()"/>
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import { Getter, Action } from 'vuex-class';
+
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+@Component({
+  components: {
+    'font-awesome-icon': FontAwesomeIcon
+  }
+})
+export default class uploadComponent extends Vue {
+  @Getter('getId', { namespace: 'ipfs' }) Id: object;
+  @Getter('getInstance', { namespace: 'ipfs' }) ipfs: object;
+  @Action('IPFSInject', { namespace: 'ipfs' }) IPFSInject: any;
+
+  public filehash = '';
+  public imghash = '';
+
+  constructor(
+    public file: Buffer
+  ) {
+    super();
+  }
+
+  created() {
+    this.IPFSInject();
+  }
+
+  handleFileUpload(e: FileList) {
+    const file = e[0];
+    const reader: FileReader = new FileReader();
+    reader.readAsArrayBuffer(file);
+    reader.onloadend = () => {
+      this.file = new Buffer(reader.result);
+    }
+  }
+
+  submit() {
+    this.ipfs.files.add(this.file, (err, result) => {
+      if(err) {
+        console.error(err);
+        return;
+      }
+      this.filehash = result[0].hash;
+      this.imghash = `http://localhost:8080/ipfs/${this.filehash}`;
+
+      this.ipfs.pin.add(this.filehash, (err) => {
+        if(err) {
+          console.error(err);
+        }
+      });
+
+      this.ipfs.pin.ls(this.filehash, (err, pinset) => {
+        if (err) {
+          console.error(err);
+        }
+        console.log(pinset);
+      })
+
+    })
+  }
+  
+}
+</script>
+
+<style lang="scss" scoped>
+div {
+  margin: auto;
+  width: 960px;
+  height: 100%;
+}
+</style>

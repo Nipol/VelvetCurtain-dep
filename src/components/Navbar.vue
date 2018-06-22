@@ -42,10 +42,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
   }
 })
 export default class Navbar extends Vue {
-
-  hello() {
-    alert('Hello world!');
-  }
 }
 </script>
 

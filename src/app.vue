@@ -1,19 +1,20 @@
 <template>
   <div>
     <Navbar></Navbar>
-    <router-view></router-view>
+    <div id="container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-// import { Action } from 'vuex-class';
 
 import Navbar from './components/Navbar.vue';
 
 @Component({
   components: {
-    Navbar
+    'Navbar': Navbar
   }
 })
 export default class App extends Vue {
@@ -26,5 +27,8 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-
+div#container {
+  padding-top: 42px;
+  height: calc(100vh - 40px);
+}
 </style>

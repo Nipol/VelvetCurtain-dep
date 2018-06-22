@@ -1,8 +1,3 @@
-declare module '*.vue' {
-	import Vue from 'vue';
-	export default Vue;
-}
-
 declare namespace Window {
 	interface web3 {
 		label: string;
@@ -10,14 +5,5 @@ declare namespace Window {
 	}
 }
 
-declare namespace ipfs {
-	interface Id {
-		id: string;
-		publicKey: string;
-		addresses: string[];
-		agentVersion: string;
-		protocolVersion: string;
-	}
-}
-
 declare module '@fortawesome/*';
+declare module 'fortawesome__vue-fontawesome';

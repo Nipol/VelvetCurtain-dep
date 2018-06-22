@@ -3,9 +3,9 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-import albumComponent from '../components/albumComponent.vue';
-import uploadComponent from '../components/uploadComponent.vue';
-import settingComponent from '../components/settingComponent.vue';
+import albumComponent from '../components/Album.vue';
+import uploadComponent from '../components/Upload.vue';
+import settingComponent from '../components/Setting.vue';
 
 const routes = [
 	{

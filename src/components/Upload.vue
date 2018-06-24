@@ -53,20 +53,6 @@ export default class uploadComponent extends Vue {
       }
       this.filehash = result[0].hash;
       this.imghash = `http://localhost:8080/ipfs/${this.filehash}`;
-
-      this.ipfs.pin.add(this.filehash, (err) => {
-        if(err) {
-          console.error(err);
-        }
-      });
-
-      this.ipfs.pin.ls(this.filehash, (err, pinset) => {
-        if (err) {
-          console.error(err);
-        }
-        console.log(pinset);
-      })
-
     })
   }
   

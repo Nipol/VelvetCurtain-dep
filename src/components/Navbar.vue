@@ -4,8 +4,8 @@
       <li id="systembutton">
       </li>
       <li id="searchbox">
-        <input type="text" placeholder="Media Id" @keydown.enter="hello()">
-        <button @click="hello()">
+        <input type="text" placeholder="Media Id" v-model="hash" @keydown.enter="pinadd()">
+        <button @click="pinadd()">
           <font-awesome-icon icon="thumbtack" />
         </button>
       </li>
@@ -34,6 +34,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Action } from 'vuex-class';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 @Component({
@@ -42,6 +43,13 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
   }
 })
 export default class Navbar extends Vue {
+  @Action('pinPhoto', { namespace: 'album' }) pinPhoto: any;
+
+  public hash = '';
+
+  pinadd() {
+    this.pinPhoto(this.hash);
+  }
 }
 </script>
 

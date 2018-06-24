@@ -1,4 +1,7 @@
 const { app, BrowserWindow } = require('electron');
+if (process.env.ELECTRON_START_URL) {
+	require('electron-reload')(__dirname);
+}
 let win;
 
 function createWindow() {
@@ -11,6 +14,15 @@ function createWindow() {
 	});
 
 	win.loadURL(`file://${__dirname}/build/index.html`);
+	const startUrl =
+		process.env.ELECTRON_START_URL ||
+		url.format({
+			pathname : path.join(__dirname, './build/index.html'),
+			protocol : 'file:',
+			slashes  : true
+		});
+
+	win.loadURL(startUrl);
 
 	win.on('closed', function() {
 		win = null;

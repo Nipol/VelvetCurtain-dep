@@ -4,12 +4,13 @@
 	"description": "",
 	"main": "main.js",
 	"scripts": {
-		"dev": "parcel serve src/index.html -d dist --public-url /dist/",
+		"dev": "npm run clean && parcel serve src/index.html -d dist --public-url /dist/",
 		"build": "cross-env NODE_ENV=production parcel build src/index.html -d build --public-url .",
 		"clean": "rimraf .cache/ && rimraf dist/ && rimraf build/",
 		"test:unit": "jest --no-cache",
 		"test:coverage": "jest --no-cache --coverage",
-		"electron": "npm run build && electron ."
+		"electron:dev": "ELECTRON_START_URL=http://localhost:1234 electron . --asar.unpackDir=node_modules/go-ipfs-dep",
+		"electron:build": "npm run build && electron-packager ./ --platform=darwin --arch=x64 --asar.unpackDir=node_modules/go-ipfs-dep --overwrite"
 	},
 	"keywords": [],
 	"author": "",
@@ -19,6 +20,7 @@
 		"@fortawesome/fontawesome-svg-core": "^1.2.0",
 		"@fortawesome/free-solid-svg-icons": "^5.1.0",
 		"@fortawesome/vue-fontawesome": "^0.1.0",
+		"electron-reload": "^1.2.3",
 		"ipfsd-ctl": "^0.37.4",
 		"normalize.css": "^8.0.0",
 		"typescript": "^2.9.2",

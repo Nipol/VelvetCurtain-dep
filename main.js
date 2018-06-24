@@ -1,7 +1,11 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
+// const DaemonFactory = require('ipfsd-ctl');
+// const df = DaemonFactory.create();
+
 if (process.env.ELECTRON_START_URL) {
 	require('electron-reload')(__dirname);
 }
+
 let win;
 
 function createWindow() {
@@ -13,7 +17,21 @@ function createWindow() {
 		// icon: `file://${__dirname}/dist/assets/logo.png`
 	});
 
-	win.loadURL(`file://${__dirname}/build/index.html`);
+	// console.log('starting disposable IPFS');
+
+	// df.spawn((err, ipfsd) => {
+	// 	if (err) {
+	// 		throw err;
+	// 	}
+	// 	ipfsd.api.id((err, id) => {
+	// 		if (err) {
+	// 			sender.send('error', err);
+	// 			throw err;
+	// 		}
+	// 		console.log('got id', id);
+	// 	});
+	// });
+
 	const startUrl =
 		process.env.ELECTRON_START_URL ||
 		url.format({
@@ -33,6 +51,7 @@ app.on('ready', createWindow);
 
 app.on('window-all-closed', function() {
 	if (process.platform !== 'darwin') {
+		ipfsd.stop();
 		app.quit();
 	}
 });

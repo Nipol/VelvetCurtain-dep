@@ -13,6 +13,28 @@ $ yarn dev
 $ yarn electron:dev
 ```
 
+## Structure
+```
+User
+  ├───Albums (Feed)         특정 유저가 소지하고 있는 Album 들
+  │   ├───Album (Feed)      앨범이 가지고 있는 이미지들의 목록
+  │   │   ├───Image (Hash)  Docs's Hash
+  │   │   └───Image (Hash)  Docs's Hash
+  │   ├───Album (Feed)      앨범이 가지고 있는 이미지들의 목록
+  │   └───Album (Feed)      앨범이 가지고 있는 이미지들의 목록
+  │
+  └───Photos (Feed)
+
+
+User's Stream (Docs)        특정 유저가 Pin하고 있는 모든 사진
+  ├───Image (filename, Hash, index)
+  ├───Image (filename, Hash, index)
+  ├───Image (filename, Hash, index)
+  ├───Image (filename, Hash, index)
+  ├───Image (filename, Hash, index)
+  ...
+```
+
 ## TODO
  - [ ] go-ipfs integration
  - [ ] Multi Platform Electron build

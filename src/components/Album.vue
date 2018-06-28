@@ -35,9 +35,20 @@ div {
 
   div#photo-container {
     width: inherit;
+    margin-left: -5px;
   }
 
-  @media only screen and (min-width: 1201px) {
+  @media only screen and (max-width: 1920px) and (min-width: 1660px) {
+    div{
+      width: 1452px;
+
+      div#photo-container {
+        column-count: 6;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 1659px) and (min-width: 1201px) {
     div{
       width: 1200px;
 

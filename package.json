@@ -24,6 +24,7 @@
 		"ipfs": "^0.29.3",
 		"ipfs-api": "^22.1.1",
 		"normalize.css": "^8.0.0",
+		"orbit-db": "^0.19.8",
 		"typescript": "^2.9.2",
 		"vue": "^2.5.16",
 		"vue-hot-reload-api": "^2.3.0",

@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
-// const DaemonFactory = require('ipfsd-ctl');
-// const df = DaemonFactory.create();
+const path = require('path');
+const url = require('url');
 
 if (process.env.ELECTRON_START_URL) {
 	require('electron-reload')(__dirname);
@@ -13,24 +13,13 @@ function createWindow() {
 		width           : 1024,
 		height          : 800,
 		titleBarStyle   : 'hiddenInset',
-		backgroundColor : '#ffffff'
+		backgroundColor : '#ffffff',
+		webPreferences  : {
+			nodeIntegration : false,
+			preload         : __dirname + '/preload.js'
+		}
 		// icon: `file://${__dirname}/dist/assets/logo.png`
 	});
-
-	// console.log('starting disposable IPFS');
-
-	// df.spawn((err, ipfsd) => {
-	// 	if (err) {
-	// 		throw err;
-	// 	}
-	// 	ipfsd.api.id((err, id) => {
-	// 		if (err) {
-	// 			sender.send('error', err);
-	// 			throw err;
-	// 		}
-	// 		console.log('got id', id);
-	// 	});
-	// });
 
 	const startUrl =
 		process.env.ELECTRON_START_URL ||
@@ -47,11 +36,12 @@ function createWindow() {
 	});
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+	createWindow();
+});
 
 app.on('window-all-closed', function() {
 	if (process.platform !== 'darwin') {
-		ipfsd.stop();
 		app.quit();
 	}
 });
@@ -60,4 +50,12 @@ app.on('activate', function() {
 	if (win === null) {
 		createWindow();
 	}
+});
+
+app.makeSingleInstance(() => {
+	debug('Trying to start a second instance');
+	dialog.showErrorBox(
+		'Multiple instances',
+		'Sorry, but there can be only one instance of Velvet Curtain running at the same time.'
+	);
 });

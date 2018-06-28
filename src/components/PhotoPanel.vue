@@ -16,7 +16,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 })
 export default class PhotoPanel extends Vue {
 
-  @Prop({ type: String, default: 'QmesQMPamSbqNqVi2QqVto5fNYdWFi27PnvtVEbh5hY9ua' }) src: string;
+  @Prop({ type: String, default: 'QmesQMPamSbqNqVi2QqVto5fNYdWFi27PnvtVEbh5hY9ua' }) src!: string;
 
   get fullUrl() {
     console.log()

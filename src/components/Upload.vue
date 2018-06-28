@@ -19,8 +19,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
   }
 })
 export default class uploadComponent extends Vue {
-  @Getter('getId', { namespace: 'ipfs' }) Id: object;
-  @Getter('getInstance', { namespace: 'ipfs' }) ipfs: object;
+  @Getter('getId', { namespace: 'ipfs' }) Id!: object;
+  @Getter('getInstance', { namespace: 'ipfs' }) ipfs!: object;
   @Action('IPFSInject', { namespace: 'ipfs' }) IPFSInject: any;
 
   public filehash = '';

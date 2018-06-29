@@ -7,3 +7,4 @@ package-lock.json
 yarn.lock
 velevtcurtain-darwin-x64/
 .DS_Store
+yarn-error.log

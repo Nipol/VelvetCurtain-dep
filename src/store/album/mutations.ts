@@ -4,7 +4,7 @@ import { PinList, PinAdd } from '../../utils/getIPFS';
 
 export const mutations: MutationTree<AlbumState> = {
 	async loadAlbum(state) {
-		state.photos = await PinList;
+		state.photos = await PinList();
 		return state;
 	},
 	async pinPhoto(state, payload) {

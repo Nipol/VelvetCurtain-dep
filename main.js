@@ -1,4 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+const IPFS = require('ipfs');
 const path = require('path');
 const url = require('url');
 
@@ -38,6 +39,18 @@ function createWindow() {
 
 app.on('ready', () => {
 	createWindow();
+
+	// Spawn your IPFS node \o/
+	const node = new IPFS();
+
+	node.on('ready', () => {
+		node.id((err, id) => {
+			if (err) {
+				return console.log(err);
+			}
+			console.log(id);
+		});
+	});
 });
 
 app.on('window-all-closed', function() {
@@ -52,7 +65,7 @@ app.on('activate', function() {
 	}
 });
 
-app.makeSingleInstance(() => {
+app.requestSingleInstanceLock(() => {
 	debug('Trying to start a second instance');
 	dialog.showErrorBox(
 		'Multiple instances',

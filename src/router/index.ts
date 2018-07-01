@@ -26,4 +26,9 @@ const routes = [
 	{ path: '*', redirect: '/album' }
 ];
 
-export default new Router({ mode: 'history', routes });
+export default new Router({
+	mode: 'history',
+	routes,
+	linkActiveClass: 'active',
+	linkExactActiveClass: 'exact-active'
+});

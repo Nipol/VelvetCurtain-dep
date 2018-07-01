@@ -9,23 +9,17 @@
           <font-awesome-icon icon="thumbtack" />
         </button>
       </li>
-      <li id="profilebox">
+      <li id="navbox">
         <ul>
-          <li>
-            <router-link tag="a" :to="{ 'name': 'album' }">
-              <font-awesome-icon icon="image" />
-            </router-link>
-          </li>
-          <li>
-            <router-link tag="a" :to="{ 'name': 'upload' }">
-              <font-awesome-icon icon="file-upload" />
-            </router-link>
-          </li>
-          <li>
-            <router-link tag="a" :to="{ 'name': 'setting' }">
-              <font-awesome-icon icon="sliders-h" />
-            </router-link>
-          </li>
+          <router-link tag="li" :to="{ 'name': 'album' }">
+            <font-awesome-icon icon="image" />
+          </router-link>
+          <router-link tag="li" :to="{ 'name': 'upload' }">
+            <font-awesome-icon icon="file-upload" />
+          </router-link>
+          <router-link tag="li" :to="{ 'name': 'setting' }">
+            <font-awesome-icon icon="sliders-h" />
+          </router-link>
         </ul>
       </li>
     </ul>
@@ -103,7 +97,10 @@ nav {
           font-size: 0.8rem;
           border-radius: 0.25rem;
           background-color: white;
-          border: 1px solid #ced4da;
+          border-left: 1px solid #ced4da;
+          border-top: 1px solid #ced4da;
+          border-bottom: 1px solid #ced4da;
+          border-right: 0px solid #ced4da;
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
           -webkit-app-region: drag;
@@ -127,7 +124,7 @@ nav {
         }
       }
 
-      &#profilebox {
+      &#navbox {
         width: 180px;
         height: 40px;
         content: ' ';
@@ -142,6 +139,13 @@ nav {
             align-items: center;
             justify-content: center;
             width: 58px;
+            height: 35px;
+            color: lightgray;
+
+            &.active {
+              color: #de3c3c;
+              border-bottom: 3px solid #de3c3c;
+            }
           }
         }
       }

@@ -38,9 +38,19 @@ div {
     margin-left: -5px;
   }
 
+  @media only screen and (max-width: 2560px) and (min-width: 1921px) {
+    div{
+      width: 1900px - 240px;
+
+      div#photo-container {
+        column-count: 8;
+      }
+    }
+  }
+
   @media only screen and (max-width: 1920px) and (min-width: 1660px) {
     div{
-      width: 1452px;
+      width: 1452px - 240px;
 
       div#photo-container {
         column-count: 6;
@@ -50,7 +60,7 @@ div {
 
   @media only screen and (max-width: 1659px) and (min-width: 1201px) {
     div{
-      width: 1200px;
+      width: 1200px - 240px;
 
       div#photo-container {
         column-count: 5;
@@ -60,7 +70,7 @@ div {
 
   @media only screen and (max-width: 1200px) and (min-width: 1024px) {
     div{
-      width: 960px;
+      width: 960px - 240px;
       div#photo-container {
         column-count: 4;
       }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="photo-container">
-      <photo-panel v-for="(photo, index) in albums" :key="index" :src="photo.hash"/>
+      <photo-panel v-for="(photo, index) in albums" :key="index" :src="photo"/>
     </div>
   </div>
 </template>

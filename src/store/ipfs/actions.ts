@@ -8,5 +8,9 @@ export const actions: ActionTree<IPFSState, RootState> = {
 	},
 	getId({ commit }): any {
 		commit('getId');
+	},
+	AddPhotoToAlbum({ commit }, payload): any {
+		console.log(payload);
+		commit('AddPhotoToAlbum', payload);
 	}
 };

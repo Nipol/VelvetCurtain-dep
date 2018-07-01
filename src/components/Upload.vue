@@ -22,12 +22,14 @@ export default class uploadComponent extends Vue {
   @Getter('getId', { namespace: 'ipfs' }) Id!: object;
   @Getter('getInstance', { namespace: 'ipfs' }) ipfs!: object;
   @Action('IPFSInject', { namespace: 'ipfs' }) IPFSInject: any;
+  @Action('AddPhotoToAlbum', { namespace: 'ipfs' }) AddPhotoToAlbum: any;
 
   public filehash = '';
   public imghash = '';
 
   constructor(
-    public file: Buffer
+    public file: Buffer,
+    public filename: string
   ) {
     super();
   }
@@ -42,18 +44,21 @@ export default class uploadComponent extends Vue {
     reader.readAsArrayBuffer(file);
     reader.onloadend = () => {
       this.file = new Buffer(reader.result);
+      this.filename = file.name;
     }
   }
 
   submit() {
-    this.ipfs.files.add(this.file, (err, result) => {
-      if(err) {
-        console.error(err);
-        return;
-      }
-      this.filehash = result[0].hash;
-      this.imghash = `http://localhost:8080/ipfs/${this.filehash}`;
-    })
+    this.AddPhotoToAlbum({filename: this.filename, file: this.file});
+
+    // this.ipfs.files.add(this.file, (err, result) => {
+    //   if(err) {
+    //     console.error(err);
+    //     return;
+    //   }
+    //   this.filehash = result[0].hash;
+    //   this.imghash = `http://localhost:8080/ipfs/${this.filehash}`;
+    // })
   }
   
 }

@@ -2,7 +2,7 @@
   <div class="photo-panel">
     <img :src="fullUrl">
     <section>
-      asdf
+      {{ FileName() }}
     </section>
   </div>
 </template>
@@ -10,17 +10,28 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
+import { getFileStat } from '../utils/getIPFS';
+
 @Component({
   components: {
   }
 })
 export default class PhotoPanel extends Vue {
 
-  @Prop({ type: String, default: 'QmesQMPamSbqNqVi2QqVto5fNYdWFi27PnvtVEbh5hY9ua' }) src!: string;
+  @Prop({ type: Object, default: 'QmesQMPamSbqNqVi2QqVto5fNYdWFi27PnvtVEbh5hY9ua' }) src!: Object;
+
+  fileHash = '';
+  // filename = '';
 
   get fullUrl() {
-    console.log()
-    return `http://localhost:8080/ipfs/${this.src}`;
+    getFileStat(this.src.name).then((result) => {
+      this.fileHash = result.hash;
+    });
+    return `http://localhost:8080/ipfs/${this.fileHash}`;
+  }
+
+  FileName() {
+    return this.src.name;
   }
 }
 </script>

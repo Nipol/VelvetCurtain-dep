@@ -9,7 +9,7 @@
 		"clean": "rimraf .cache/ && rimraf dist/ && rimraf build/",
 		"test:unit": "jest --no-cache",
 		"test:coverage": "jest --no-cache --coverage",
-		"electron:dev": "ELECTRON_START_URL=http://localhost:1234 electron . --asar.unpackDir=node_modules/go-ipfs-dep",
+		"electron:dev": "ELECTRON_START_URL=http://localhost:1234 electron .",
 		"electron:build": "npm run build && electron-packager ./ --platform=darwin --arch=x64 --asar.unpackDir=node_modules/go-ipfs-dep --overwrite"
 	},
 	"keywords": [],
@@ -36,7 +36,7 @@
 	"devDependencies": {
 		"@vue/component-compiler-utils": "^2.0.0",
 		"cross-env": "^5.2.0",
-		"electron": "^3.0.0-beta.1",
+		"electron": "^2.0.3",
 		"electron-packager": "^12.1.0",
 		"electron-rebuild": "^1.7.3",
 		"node-sass": "^4.9.0",

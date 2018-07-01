@@ -40,15 +40,22 @@ function createWindow() {
 app.on('ready', () => {
 	createWindow();
 
+	const ipfsoption = {
+		EXPERIMENTAL : {
+			pubsub : true,
+			dht    : true
+		}
+	};
+
 	// Spawn your IPFS node \o/
-	const node = new IPFS();
+	const node = new IPFS(ipfsoption);
 
 	node.on('ready', () => {
-		node.id((err, id) => {
+		node.config.get((err, config) => {
 			if (err) {
 				return console.log(err);
 			}
-			console.log(id);
+			console.log(config);
 		});
 	});
 });
@@ -63,12 +70,4 @@ app.on('activate', function() {
 	if (win === null) {
 		createWindow();
 	}
-});
-
-app.requestSingleInstanceLock(() => {
-	debug('Trying to start a second instance');
-	dialog.showErrorBox(
-		'Multiple instances',
-		'Sorry, but there can be only one instance of Velvet Curtain running at the same time.'
-	);
 });

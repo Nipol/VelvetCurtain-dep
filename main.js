@@ -11,8 +11,8 @@ let win;
 
 function createWindow() {
 	win = new BrowserWindow({
-		width           : 1024,
-		height          : 800,
+		width           : 1280,
+		height          : 700,
 		titleBarStyle   : 'hiddenInset',
 		backgroundColor : '#ffffff',
 		webPreferences  : {

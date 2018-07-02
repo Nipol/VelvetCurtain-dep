@@ -37,6 +37,10 @@ export const Id = async (): Promise<object> => {
 	});
 };
 
+/**
+ * getFileList
+ * 
+ */
 export const getFileList = async (TargetAlbum = 'Albumtest'): Promise<Array<Object>> => {
 	return new Promise<Array<Object>>((resolve, reject) => {
 		try {
@@ -56,15 +60,116 @@ export const getFileList = async (TargetAlbum = 'Albumtest'): Promise<Array<Obje
 	});
 };
 
+/**
+ * getFileStat
+ * 
+ */
 export const getFileStat = async (filename: string): Promise<Object> => {
 	return new Promise<Object>((resolve, reject) => {
 		window.ipfs.files.stat(`/Albumtest/${filename}`, (err: any, payload: Object) => {
 			if (err) {
 				reject(err);
 			}
-			// console.log('getMFSHash: ', payload);
 			resolve(payload);
 		});
+	});
+};
+
+/**
+ * renameFile
+ * 
+ */
+export const renameFile = async (folderName: string, fileName: string, afterFileName: string): Promise<Object> => {
+	return new Promise<Object>((resolve, reject) => {
+		try {
+			if (window.ipfs !== undefined) {
+				window.ipfs.files.mv(`/${folderName}/${fileName}`, `/${folderName}/${afterFileName}`, (err: any) => {
+					if (err) {
+						reject(err);
+					}
+					resolve(true);
+				});
+			} else {
+				reject('IPFS is undefined');
+			}
+		} catch (e) {
+			console.error('IPFS Module Not Injected', e);
+		}
+	});
+};
+
+/**
+ * existFile
+ * 
+ */
+export const existFile = async (folderName: string, fileName: string): Promise<boolean> => {
+	return new Promise<boolean>((resolve, reject) => {
+		try {
+			if (window.ipfs !== undefined) {
+				window.ipfs.files.ls(`/${folderName}/${fileName}`, (err: any, file: object) => {
+					if (err) {
+						resolve(false);
+					}
+					resolve(true);
+				});
+			} else {
+				reject('IPFS is undefined');
+			}
+		} catch (e) {}
+	});
+};
+
+/**
+ * copyFileToDest
+ * 
+ */
+export const copyFileToDest = async (
+	sourceFolderName: string,
+	destFolderName: string,
+	fileName: string
+): Promise<Object> => {
+	return new Promise<Object>((resolve, reject) => {
+		try {
+			if (window.ipfs !== undefined) {
+				window.ipfs.files.cp(
+					`/${sourceFolderName}/${fileName}`,
+					`/${destFolderName}/${fileName}`,
+					(err: any) => {
+						if (err) {
+							reject(err);
+						}
+						resolve(true);
+					}
+				);
+			} else {
+				reject('IPFS is undefined');
+			}
+		} catch (e) {
+			console.error('IPFS Module Not Injected', e);
+		}
+	});
+};
+
+/**
+ * removeFile
+ * 
+ */
+export const removeFile = async (folderName: string, fileName: string): Promise<Object> => {
+	return new Promise<Object>((resolve, reject) => {
+		try {
+			if (window.ipfs !== undefined) {
+				window.ipfs.files.rm(`/${folderName}/${fileName}`, (err: any) => {
+					if (err) {
+						reject(err);
+					}
+					resolve(true);
+				});
+			} else {
+				reject('IPFS is undefined');
+			}
+		} catch (e) {
+			console.error('IPFS Module Not Injected', e);
+		}
 	});
 };
 

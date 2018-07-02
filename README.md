@@ -6,7 +6,6 @@ Velvet Curtain은, 사진 파일을 공유하기 위해서 특정 서비스에 �
 ```sh
 $ ipfs daemon
 
-$ yarn global add parcel-bundler
 $ yarn install
 
 $ yarn dev
@@ -15,24 +14,19 @@ $ yarn electron:dev
 
 ## Structure
 ```
-User
-  ├───Albums (Feed)         특정 유저가 소지하고 있는 Album 들
-  │   ├───Album (Feed)      앨범이 가지고 있는 이미지들의 목록
-  │   │   ├───Image (Hash)  Docs's Hash
-  │   │   └───Image (Hash)  Docs's Hash
-  │   ├───Album (Feed)      앨범이 가지고 있는 이미지들의 목록
-  │   └───Album (Feed)      앨범이 가지고 있는 이미지들의 목록
+User's
+  ├───Photos (MFS)          사용자가 가지고 있는 모든 이미지들의 집합
+  │   ├───Image-A (Hash)    Photos 앨범에 포함된 이미지
+  │   ├───Image-B (Hash)    Photos 앨범에 포함된 이미지
+  │   └───Image-C (Hash)    Photos 앨범에 포함된 이미지
   │
-  └───Photos (Feed)         User's Photos
-
-
-User's Photos (Docs)        특정 유저가 Pin하고 있는 모든 사진
-  ├───Image (filename, Hash, index)
-  ├───Image (filename, Hash, index)
-  ├───Image (filename, Hash, index)
-  ├───Image (filename, Hash, index)
-  ├───Image (filename, Hash, index)
-  ...
+  ├───Stared (MFS)          사용자의 정의 앨범, 이미지들의 집합
+  │   ├───Image-A (Hash)    Photos 앨범에 포함된 이미지 (복사됨)
+  │   └───Image-C (Hash)    Photos 앨범에 포함된 이미지 (복사됨)
+  │
+  └───Album (MFS)           앨범이 가지고 있는 이미지들의 목록
+      ├───Image (Hash)      Photos 앨범에 포함된 이미지
+      ...
 ```
 
 ## TODO

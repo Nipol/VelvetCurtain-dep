@@ -55,6 +55,7 @@ nav {
   top: 0;
   height: 38px;
   width: 100%;
+  border: 0px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   margin-bottom: 10px;
@@ -96,11 +97,12 @@ nav {
           margin: auto;
           font-size: 0.8rem;
           border-radius: 0.25rem;
-          background-color: white;
-          border-left: 1px solid #ced4da;
-          border-top: 1px solid #ced4da;
-          border-bottom: 1px solid #ced4da;
-          border-right: 0px solid #ced4da;
+          background-color: hsl(220, 12%, 95%);
+          border: 0px;
+          // border-left: 1px solid #ced4da;
+          // border-top: 1px solid #ced4da;
+          // border-bottom: 1px solid #ced4da;
+          // border-right: 0px solid #ced4da;
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
           -webkit-app-region: drag;
@@ -113,9 +115,9 @@ nav {
           text-align: center;
           vertical-align: middle;
           color: #6c757d;
-          background-color: transparent;
+          background-color: hsl(220, 12%, 95%);
           background-image: none;
-          border: 1px solid #ced4da;
+          border: 0px;
           height: 30px;
           border-radius: 0.25rem;
           border-top-left-radius: 0;

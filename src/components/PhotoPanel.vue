@@ -45,16 +45,16 @@ div.photo-panel {
   margin-right: 5px;
   margin-left: 5px;
   margin-bottom: 5px;
-  border-radius: 0.25rem;
   display: inline-block;
   position: relative;
 
   img {
-    object-fit: cover;
+    // object-fit: cover;
     width: 100%;
     height: 100%;
+    border: 0;
     border-radius: 0.25rem;
-    border: 1px solid #ced4da;
+    box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
   }
 
   section {
@@ -64,7 +64,7 @@ div.photo-panel {
     width: inherit;
     height: 50px;
     background: #ced4da;
-    border: 1px solid #ced4da;
+    border: 0;
 
     border-bottom-left-radius: 0.25rem;
     border-bottom-right-radius: 0.25rem;

@@ -1,12 +1,13 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-	faSearch,
+	faArchive,
 	faCoffee,
 	faImage,
 	faImages,
 	faFileUpload,
 	faThumbtack,
-	faSlidersH
+	faSlidersH,
+	faStar
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faSearch, faCoffee, faImage, faImages, faFileUpload, faThumbtack, faSlidersH);
+library.add(faArchive, faCoffee, faImage, faImages, faFileUpload, faThumbtack, faSlidersH, faStar);

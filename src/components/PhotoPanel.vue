@@ -1,6 +1,6 @@
 <template>
   <div class="photo-panel">
-    <img :src="fullUrl">
+    <img v-show="fileHash" :src="fullUrl">
     <section>
       {{ FileName() }}
     </section>
@@ -38,18 +38,50 @@ export default class PhotoPanel extends Vue {
 
 <style lang="scss" scoped>
 div.photo-panel {
-  width: 228px;
+  width: 220px;
   min-height: 100px;
   max-height: 400px;
-  margin-top: 5px;
-  margin-right: 5px;
-  margin-left: 5px;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
   display: inline-block;
   position: relative;
 
+  @media only screen and (max-width: 2560px) and (min-width: 1921px) {
+    & {
+      width: 240px;
+    }
+  }
+
+  @media only screen and (max-width: 1920px) and (min-width: 1661px) {
+    & {
+      width: 225px;
+    }
+  }
+
+  @media only screen and (max-width: 1660px) and (min-width: 1201px) {
+    & {
+      width: 175px;
+      margin-top: 10px;
+      margin-right: 5px;
+      margin-left: 5px;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 1200px) and (min-width: 1024px) { 
+    & {
+      width: 120px;
+      margin-top: 5px;
+      margin-right: 5px;
+      margin-left: 5px;
+      margin-bottom: 5px;
+    }
+  }
+
   img {
-    // object-fit: cover;
+    object-fit: cover;
     width: 100%;
     height: 100%;
     border: 0;

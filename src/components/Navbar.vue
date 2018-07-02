@@ -11,9 +11,6 @@
       </li>
       <li id="navbox">
         <ul>
-          <router-link tag="li" :to="{ 'name': 'album' }">
-            <font-awesome-icon icon="image" />
-          </router-link>
           <router-link tag="li" :to="{ 'name': 'upload' }">
             <font-awesome-icon icon="file-upload" />
           </router-link>
@@ -83,7 +80,7 @@ nav {
       }
 
       &#searchbox {
-        width: calc(100vw - 265px);
+        width: calc(100vw - 225px);
         height: 38px;
         content: ' ';
         margin: auto;
@@ -127,7 +124,7 @@ nav {
       }
 
       &#navbox {
-        width: 180px;
+        width: 130px;
         height: 40px;
         content: ' ';
         border-left: 1px solid lightgray;

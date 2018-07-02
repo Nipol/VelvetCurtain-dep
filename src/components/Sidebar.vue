@@ -3,11 +3,16 @@
     <div id="side-bar-container">
       <div class="menubox">
         <h1>
-          <font-awesome-icon icon="search" /> &nbsp; Browser
+          <font-awesome-icon icon="archive" /> &nbsp; Browser
         </h1>
         <ul>
-          <router-link tag="li" :to="{ 'name': 'Photos' }">
+          <router-link tag="li" :to="{ 'name': 'photos' }">
+            <font-awesome-icon icon="image" />&nbsp;
             Photos
+          </router-link>
+          <router-link tag="li" :to="{ 'name': 'stared' }">
+            <font-awesome-icon icon="star" />&nbsp;
+            Stared
           </router-link>
         </ul>
       </div>

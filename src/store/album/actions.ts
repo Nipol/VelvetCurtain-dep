@@ -3,8 +3,11 @@ import { AlbumState } from './types';
 import { RootState } from '../types';
 
 export const actions: ActionTree<AlbumState, RootState> = {
-	loadAlbum({ commit }): any {
-		commit('loadAlbum');
+	loadPhotos({ commit }): any {
+		commit('loadPhotos');
+	},
+	loadStared({ commit }): any {
+		commit('loadStared');
 	},
 	pinPhoto({ commit }, payload): any {
 		commit('pinPhoto', payload);

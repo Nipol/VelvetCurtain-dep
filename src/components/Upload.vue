@@ -44,7 +44,7 @@ export default class uploadComponent extends Vue {
     reader.readAsArrayBuffer(file);
     reader.onloadend = () => {
       this.file = new Buffer(reader.result);
-      this.filename = file.name;
+      this.filename = `vc-${Math.random()}-${file.name}`;
     }
   }
 

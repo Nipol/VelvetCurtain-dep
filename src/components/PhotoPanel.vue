@@ -1,5 +1,8 @@
 <template>
   <div class="photo-panel">
+    <div class="stared" v-bind:class="{ active: stared }" @click="star()">
+      <font-awesome-icon icon="star" />
+    </div>
     <img v-show="fileHash" :src="fullUrl">
     <section>
       {{ FileName() }}
@@ -9,29 +12,53 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-import { getFileStat } from '../utils/getIPFS';
+import { getFileStat, existFile, copyFileToDest, removeFile } from '../utils/getIPFS';
 
 @Component({
   components: {
+    'font-awesome-icon': FontAwesomeIcon
   }
 })
 export default class PhotoPanel extends Vue {
 
   @Prop({ type: Object, default: 'QmesQMPamSbqNqVi2QqVto5fNYdWFi27PnvtVEbh5hY9ua' }) src!: Object;
 
-  fileHash = '';
-  // filename = '';
+  constructor(
+    public stared: boolean,
+    public fileHash: string
+  ) {
+    super();
+    this.stared = false;
+    this.fileHash = '';
+  }
 
   get fullUrl() {
     getFileStat(this.src.name).then((result) => {
       this.fileHash = result.hash;
     });
-    return `http://localhost:8080/ipfs/${this.fileHash}`;
+    if(this.fileHash !== '') {
+      return `http://localhost:8080/ipfs/${this.fileHash}`;
+    }
   }
 
   FileName() {
     return this.src.name;
+  }
+
+  async mounted() {
+    this.stared = await existFile('Stared', this.src.name);
+  }
+
+  star() {
+    if(this.stared == false) {
+      copyFileToDest('Albumtest', 'Stared', this.src.name);
+      this.stared = true;
+    } else {
+      removeFile('Stared', this.src.name);
+      this.stared = false;
+    }
   }
 }
 </script>
@@ -103,6 +130,23 @@ div.photo-panel {
 
     &:hover {
       opacity: 0.7;
+    }
+  }
+
+  div.stared {
+    top: 5px;
+    right: 5px;
+    position: absolute;
+    font-size: 1rem;
+    color: #ced4da;
+    opacity: 0;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &.active {
+      color: yellow;
     }
   }
 }

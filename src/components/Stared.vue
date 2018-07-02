@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="photo-container">
-      <photo-panel v-for="(photo, index) in albums" :key="index" :src="photo"/>
+      <photo-panel v-for="(photo, index) in stared" :key="index" :src="photo"/>
     </div>
   </div>
 </template>
@@ -17,14 +17,14 @@ import PhotoPanel from './PhotoPanel.vue';
   }
 })
 export default class staredComponent extends Vue {
-  @Getter('getAlbum', { namespace: 'album' }) albums: any;
-  @Action('loadAlbum', { namespace: 'album' }) loadAlbum: any;
+  @Getter('getStared', { namespace: 'album' }) stared: any;
+  @Action('loadStared', { namespace: 'album' }) loadStared: any;
 
   created() {
   }
 
   mounted() {
-    this.loadAlbum();
+    this.loadStared();
   }
 }
 </script>

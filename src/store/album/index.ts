@@ -6,7 +6,8 @@ import { AlbumState } from './types';
 import { RootState } from '../types';
 
 export const state: AlbumState = {
-	photos: []
+	photos: [],
+	stared: []
 };
 
 const namespaced: boolean = true;

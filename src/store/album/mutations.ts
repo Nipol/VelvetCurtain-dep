@@ -3,12 +3,13 @@ import { AlbumState } from './types';
 import { getFileList, PinAdd } from '../../utils/getIPFS';
 
 export const mutations: MutationTree<AlbumState> = {
-	async loadAlbum(state) {
+	async loadPhotos(state) {
 		state.photos = await getFileList();
-		return state;
+	},
+	async loadStared(state) {
+		state.stared = await getFileList('Stared');
 	},
 	async pinPhoto(state, payload) {
 		await PinAdd(payload);
-		return state;
 	}
 };

@@ -16,7 +16,7 @@ import PhotoPanel from './PhotoPanel.vue';
     'photo-panel': PhotoPanel
   }
 })
-export default class albumComponent extends Vue {
+export default class photosComponent extends Vue {
   @Getter('getAlbum', { namespace: 'album' }) albums: any;
   @Action('loadAlbum', { namespace: 'album' }) loadAlbum: any;
 
@@ -31,49 +31,35 @@ export default class albumComponent extends Vue {
 
 <style lang="scss" scoped>
 div {
+  width: calc(100% - 240px);
   margin: auto;
 
   div#photo-container {
     width: inherit;
-    margin-left: -5px;
+    margin-left: 240px;
   }
 
   @media only screen and (max-width: 2560px) and (min-width: 1921px) {
-    div{
-      width: 1900px - 240px;
-
-      div#photo-container {
-        column-count: 8;
-      }
+    div#photo-container {
+      column-count: 9;
     }
   }
 
-  @media only screen and (max-width: 1920px) and (min-width: 1660px) {
-    div{
-      width: 1452px - 240px;
-
-      div#photo-container {
-        column-count: 6;
-      }
+  @media only screen and (max-width: 1920px) and (min-width: 1661px) {
+    div#photo-container {
+      column-count: 6;
     }
   }
 
-  @media only screen and (max-width: 1659px) and (min-width: 1201px) {
-    div{
-      width: 1200px - 240px;
-
-      div#photo-container {
-        column-count: 5;
-      }
+  @media only screen and (max-width: 1660px) and (min-width: 1201px) {
+    div#photo-container {
+      column-count: 5;
     }
   }
 
-  @media only screen and (max-width: 1200px) and (min-width: 1024px) {
-    div{
-      width: 960px - 240px;
-      div#photo-container {
-        column-count: 4;
-      }
+  @media only screen and (max-width: 1200px) and (min-width: 1024px) { 
+    div#photo-container {
+      column-count: 4;
     }
   }
 }

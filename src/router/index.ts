@@ -3,15 +3,15 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-import albumComponent from '../components/Album.vue';
+import photosComponent from '../components/Photos.vue';
 import uploadComponent from '../components/Upload.vue';
 import settingComponent from '../components/Setting.vue';
 
 const routes = [
 	{
-		name: 'album',
-		path: '/album',
-		component: albumComponent
+		name: 'photos',
+		path: '/photos',
+		component: photosComponent
 	},
 	{
 		name: 'upload',
@@ -23,7 +23,7 @@ const routes = [
 		path: '/setting',
 		component: settingComponent
 	},
-	{ path: '*', redirect: '/album' }
+	{ path: '*', redirect: '/photos' }
 ];
 
 export default new Router({

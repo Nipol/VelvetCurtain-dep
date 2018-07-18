@@ -25,22 +25,16 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { Action } from 'vuex-class';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 @Component({
   components: {
-    'font-awesome-icon': FontAwesomeIcon
-  }
+    'font-awesome-icon': FontAwesomeIcon,
+  },
 })
 export default class Navbar extends Vue {
-  @Action('pinPhoto', { namespace: 'album' }) pinPhoto: any;
 
   public hash = '';
-
-  pinadd() {
-    this.pinPhoto(this.hash);
-  }
 }
 </script>
 
@@ -58,13 +52,11 @@ nav {
   margin-bottom: 10px;
   -webkit-user-select: none;
   -webkit-app-region: drag;
-
   ul {
     display: flex;
     padding: 0;
     margin: 0;
     height: 38px;
-
     li {
       flex: 0 0 auto;
       width: 100%;
@@ -72,13 +64,11 @@ nav {
       display: flex;
       align-items: center;
       justify-content: center;
-
       &#systembutton {
         width: 75px;
         content: ' ';
         border-right: 1px solid lightgray;
       }
-
       &#searchbox {
         width: calc(100vw - 225px);
         height: 38px;
@@ -87,7 +77,6 @@ nav {
         display: flex;
         align-items: center;
         justify-content: center;
-
         input[type="text"] {
           width: 100%;
           height: 26px;
@@ -104,7 +93,6 @@ nav {
           border-bottom-right-radius: 0;
           -webkit-app-region: drag;
         }
-
         button {
           font-weight: 400;
           font-size: 1rem;
@@ -122,25 +110,21 @@ nav {
           -webkit-app-region: drag;
         }
       }
-
       &#navbox {
         width: 130px;
         height: 40px;
         content: ' ';
         border-left: 1px solid lightgray;
-
         ul {
           display: flex;
           list-style: none;
           justify-content: space-between;
-
           li {
             align-items: center;
             justify-content: center;
             width: 58px;
             height: 35px;
             color: lightgray;
-
             &.active {
               color: #de3c3c;
               border-bottom: 3px solid #de3c3c;
@@ -148,28 +132,22 @@ nav {
           }
         }
       }
-
       a {
         font-weight: 400;
         text-decoration: none;
         font-size: 1.3rem;
-
         &:link {
           color: #de3c3c;
         }
-
         &:visited {
           color: #de3c3c;
         }
-
         &:focus {
           color: #de3c3c;
         }
-
         &:hover {
           color: #de3c3c;
         }
-
         &:active {
           color: #de3c3c;
         }
@@ -179,4 +157,3 @@ nav {
   }
 }
 </style>
-

@@ -1,10 +1,10 @@
 node_modules/
+VelvetCurtain-darwin-x64/
 dist/
 build/
 .vscode/
 .cache/
 package-lock.json
 yarn.lock
-velevtcurtain-darwin-x64/
 .DS_Store
 yarn-error.log

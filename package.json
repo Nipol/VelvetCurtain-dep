@@ -1,47 +1,69 @@
 {
-	"name": "velevtcurtain",
-	"version": "1.0.0",
-	"description": "",
-	"main": "main.js",
-	"scripts": {
-		"dev": "npm run clean && parcel serve src/index.html -d dist --public-url /dist/",
-		"build": "cross-env NODE_ENV=production parcel build src/index.html -d build --public-url .",
-		"clean": "rimraf .cache/ && rimraf dist/ && rimraf build/",
-		"test:unit": "jest --no-cache",
-		"test:coverage": "jest --no-cache --coverage",
-		"electron:dev": "ELECTRON_START_URL=http://localhost:1234 electron .",
-		"electron:build": "npm run build && electron-packager ./ --platform=darwin --arch=x64 --asar.unpackDir=node_modules/go-ipfs-dep --overwrite"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"@fortawesome/fontawesome-free": "^5.1.0",
-		"@fortawesome/fontawesome-svg-core": "^1.2.0",
-		"@fortawesome/free-solid-svg-icons": "^5.1.0",
-		"@fortawesome/vue-fontawesome": "^0.1.0",
-		"electron-reload": "^1.2.3",
-		"ipfs": "^0.29.3",
-		"ipfs-api": "^22.1.1",
-		"normalize.css": "^8.0.0",
-		"secp256k1": "^3.5.0",
-		"typescript": "^2.9.2",
-		"vue": "^2.5.16",
-		"vue-hot-reload-api": "^2.3.0",
-		"vue-property-decorator": "^6.1.0",
-		"vue-router": "^3.0.1",
-		"vuex": "^3.0.1",
-		"vuex-class": "^0.3.1"
-	},
-	"devDependencies": {
-		"@vue/component-compiler-utils": "^2.0.0",
-		"cross-env": "^5.2.0",
-		"electron": "^2.0.3",
-		"electron-packager": "^12.1.0",
-		"electron-rebuild": "^1.7.3",
-		"node-sass": "^4.9.0",
-		"parcel-bundler": "^1.9.3",
-		"rimraf": "^2.6.2",
-		"vue-template-compiler": "^2.5.16"
-	}
+  "name": "VelvetCurtain",
+  "version": "0.1.0",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "electron:dev": "ELECTRON_START_URL=http://localhost:8080 electron .",
+    "electron:build": "electron-packager ./dist --platform=darwin --arch=x64 --overwrite"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.1.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.0",
+    "@fortawesome/free-solid-svg-icons": "^5.1.0",
+    "@fortawesome/vue-fontawesome": "^0.1.1",
+    "electron": "^2.0.5",
+    "go-ipfs-dep": "0.4.13",
+    "ipfs": "^0.30.0",
+    "ipfs-api": "^22.2.3",
+    "ipfsd-ctl": "^0.38.0",
+    "normalize.css": "^8.0.0",
+    "vue": "^2.5.16",
+    "vue-class-component": "^6.2.0",
+    "vue-property-decorator": "^7.0.0",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1",
+    "vuex-class": "^0.3.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-rc.5",
+    "@vue/cli-plugin-typescript": "^3.0.0-rc.5",
+    "@vue/cli-service": "^3.0.0-rc.5",
+    "electron-packager": "^12.1.0",
+    "electron-rebuild": "^1.8.1",
+    "electron-reload": "^1.2.5",
+    "lint-staged": "^6.0.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "vue-template-compiler": "^2.5.16"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
+  "go-ipfs": {
+    "version": "v0.4.13"
+  }
 }

@@ -12,12 +12,11 @@ let win;
 function createWindow() {
 	win = new BrowserWindow({
 		width           : 1280,
-		height          : 700,
+		height          : 800,
 		titleBarStyle   : 'hiddenInset',
 		backgroundColor : '#ffffff',
 		webPreferences  : {
-			nodeIntegration : false,
-			preload         : __dirname + '/preload.js'
+			nodeIntegration : true,
 		}
 		// icon: `file://${__dirname}/dist/assets/logo.png`
 	});
@@ -25,7 +24,7 @@ function createWindow() {
 	const startUrl =
 		process.env.ELECTRON_START_URL ||
 		url.format({
-			pathname : path.join(__dirname, './build/index.html'),
+			pathname : path.join(__dirname, './index.html'),
 			protocol : 'file:',
 			slashes  : true
 		});
@@ -39,25 +38,6 @@ function createWindow() {
 
 app.on('ready', () => {
 	createWindow();
-
-	const ipfsoption = {
-		EXPERIMENTAL : {
-			pubsub : true,
-			dht    : true
-		}
-	};
-
-	// Spawn your IPFS node \o/
-	const node = new IPFS(ipfsoption);
-
-	node.on('ready', () => {
-		node.config.get((err, config) => {
-			if (err) {
-				return console.log(err);
-			}
-			console.log(config);
-		});
-	});
 });
 
 app.on('window-all-closed', function() {

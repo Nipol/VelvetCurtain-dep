@@ -1,4 +1,4 @@
 export interface AlbumState {
-	photos: Array<object>;
-	stared: Array<object>;
+  photos: object[];
+  stared: object[];
 }

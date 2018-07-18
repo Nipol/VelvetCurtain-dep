@@ -3,7 +3,7 @@
     <div class="stared" v-bind:class="{ active: stared }" @click="star()">
       <font-awesome-icon icon="star" />
     </div>
-    <img v-show="fileHash" :src="fullUrl">
+    <img v-show="fileHash" :src="blob">
     <section>
       {{ FileName() }}
     </section>
@@ -13,47 +13,46 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-
-import { getFileStat, existFile, copyFileToDest, removeFile } from '../utils/getIPFS';
+import { getFileStat, existFile, copyFileToDest, removeFile, loadPhoto } from '../utils/getJSIPFS';
 
 @Component({
   components: {
-    'font-awesome-icon': FontAwesomeIcon
-  }
+    'font-awesome-icon': FontAwesomeIcon,
+  },
 })
 export default class PhotoPanel extends Vue {
-
-  @Prop({ type: Object, default: 'QmesQMPamSbqNqVi2QqVto5fNYdWFi27PnvtVEbh5hY9ua' }) src!: Object;
+  @Prop({ type: Object, default: 'QmesQMPamSbqNqVi2QqVto5fNYdWFi27PnvtVEbh5hY9ua' }) public src!: object;
 
   constructor(
     public stared: boolean,
-    public fileHash: string
+    public fileHash: string,
+    public blob: string,
   ) {
     super();
     this.stared = false;
     this.fileHash = '';
+    this.blob = '';
   }
 
-  get fullUrl() {
-    getFileStat(this.src.name).then((result) => {
-      this.fileHash = result.hash;
-    });
-    if(this.fileHash !== '') {
-      return `http://localhost:8080/ipfs/${this.fileHash}`;
-    }
-  }
-
-  FileName() {
+  public FileName() {
     return this.src.name;
   }
 
-  async mounted() {
+  public async mounted() {
     this.stared = await existFile('Stared', this.src.name);
+
+    const hash = await getFileStat(this.src.name);
+    this.fileHash = hash.hash;
+
+    const bufferdata = await loadPhoto(this.fileHash);
+    const blob = new Blob( [ bufferdata ], { type: 'image/*' } );
+    const imageUrl = window.URL.createObjectURL(blob);
+    this.blob = imageUrl;
   }
 
-  star() {
-    if(this.stared == false) {
-      copyFileToDest('Albumtest', 'Stared', this.src.name);
+  public star() {
+    if (this.stared === false) {
+      copyFileToDest('Album', 'Stared', this.src.name);
       this.stared = true;
     } else {
       removeFile('Stared', this.src.name);
@@ -124,7 +123,6 @@ div.photo-panel {
     height: 50px;
     background: #ced4da;
     border: 0;
-
     border-bottom-left-radius: 0.25rem;
     border-bottom-right-radius: 0.25rem;
 
@@ -144,11 +142,10 @@ div.photo-panel {
     &:hover {
       opacity: 0.7;
     }
-
+    
     &.active {
       color: yellow;
     }
   }
 }
 </style>
-

@@ -8,8 +8,8 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class settingComponent extends Vue {
-  
+export default class SettingComponent extends Vue {
+
 }
 </script>
 

@@ -12,19 +12,12 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Action } from 'vuex-class';
 
 @Component({})
-export default class UploadComponent extends Vue {
-
+export default class Upload extends Vue {
+  public file = {};
+  public filename = '';
   public filehash = '';
   public imghash = '';
   @Action('AddPhotoToAlbum', { namespace: 'album' }) private AddPhotoToAlbum: any;
-
-  constructor(
-    public file: Buffer,
-    public filename: string,
-  ) {
-    super();
-  }
-
   public handleFileUpload(e: FileList) {
     const file = e[0];
     const reader: FileReader = new FileReader();
@@ -34,7 +27,6 @@ export default class UploadComponent extends Vue {
       this.filename = `vc-${Math.random()}-${file.name}`;
     };
   }
-
   public submit() {
     this.AddPhotoToAlbum({filename: this.filename, file: this.file});
   }

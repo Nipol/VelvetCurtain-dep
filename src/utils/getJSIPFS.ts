@@ -8,7 +8,6 @@ const ipfs = new IPFS({
 });
 
 // const ipfs = ipfsAPI('localhost', '5001');
-
 export const InitializeAlbum = async (): Promise<any> => {
   return new Promise<any>((resolve, reject) => {
     try {
@@ -118,13 +117,13 @@ export const getFileList = async (TargetAlbum = 'Album'): Promise<object[]> => {
  * getFileStat
  *
  */
-export const getFileStat = async (filename: string): Promise<object> => {
-  return new Promise<object>((resolve, reject) => {
-    ipfs.files.stat(`/Album/${filename}`, (err: any, payload: object) => {
+export const getFileStat = async (filename: string): Promise<any> => {
+  return new Promise<any>((resolve, reject) => {
+    ipfs.files.stat(`/Album/${filename}`, (err: any, payload: any) => {
       if (err) {
         reject(err);
       }
-      resolve(payload);
+      resolve(payload.hash);
     });
   });
 };

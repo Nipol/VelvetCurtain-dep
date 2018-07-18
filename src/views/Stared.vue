@@ -16,10 +16,9 @@ import PhotoPanel from '@/components/PhotoPanel.vue';
     'photo-panel': PhotoPanel,
   },
 })
-export default class StaredComponent extends Vue {
+export default class Stared extends Vue {
   @Getter('getStared', { namespace: 'album' }) public stared: any;
   @Action('loadStared', { namespace: 'album' }) public loadStared: any;
-
   public mounted() {
     this.loadStared();
   }

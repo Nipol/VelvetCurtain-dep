@@ -16,13 +16,11 @@ import PhotoPanel from '@/components/PhotoPanel.vue';
     'photo-panel': PhotoPanel,
   },
 })
-export default class PhotosComponent extends Vue {
-
+export default class Photos extends Vue {
   @Getter('getPhotos', { namespace: 'album' }) public photos: any;
   @Action('initializeAlbum', { namespace: 'album' }) public initializeAlbum: any;
   @Action('initializeStared', { namespace: 'album' }) public initializeStared: any;
   @Action('loadPhotos', { namespace: 'album' }) public loadPhotos: any;
-
   public mounted() {
     this.initializeAlbum();
     this.initializeStared();

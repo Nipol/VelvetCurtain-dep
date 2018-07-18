@@ -6,7 +6,6 @@ import store from './store';
 import './assets/style.scss';
 import 'normalize.css/normalize.css';
 
-import './utils/getJSIPFS';
 import './utils/fontawesome';
 
 Vue.config.productionTip = false;

@@ -33,7 +33,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
   },
 })
 export default class Navbar extends Vue {
-
   public hash = '';
 }
 </script>
